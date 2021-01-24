@@ -4,7 +4,7 @@ Version: 1.0
 Autor: Arvin
 Date: 2021-01-21 21:46:35
 LastEditors: Arvin
-LastEditTime: 2021-01-24 16:22:37
+LastEditTime: 2021-01-24 20:16:23
 '''
 import time
 import serial
@@ -37,6 +37,8 @@ def OpenPort(portx, bps, timeout):
         #判断是否打开成功
         if ser.is_open:
             ret = True
+            ser.reset_input_buffer()
+            ser.reset_output_buffer()
             return ser, ret
     except Exception as e:
         print("----Open error----: ", e)
@@ -96,7 +98,7 @@ if __name__ == "__main__":
         portx = GetPort()
         print(portx)
 
-        ser, ret = OpenPort(portx, 9600, None)
+        ser, ret = OpenPort(portx, 115200, None)
 
         if ret:
             # sdata = bytedata(20)
@@ -107,12 +109,22 @@ if __name__ == "__main__":
             count = WritePort(ser, sdata)
             # print("写入的数据是：% s ", sdata)
             time.sleep(1)
-            rdata = ReadData(ser)
-            print('读取的数据：%s' % rdata)
+            # rdata = ReadData(ser)
+
+            if ser.in_waiting:
+                rbytes = ser.read(ser.in_waiting)
+                rstr = rbytes.decode(CODEGLO)
+            
+            time.sleep(1)
+            print('读取的数据：%s' % rstr)
             ClosePort(ser)
 
 
     except Exception as e:
-        if ret:
-            ClosePort(ser)
-        print("----异常----：", e)
+        try:
+            if ret:
+                ClosePort(ser)
+        except Exception as e:
+             print("----异常----：", e)
+
+       
