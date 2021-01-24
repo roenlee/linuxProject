@@ -4,7 +4,7 @@ Version: 1.0
 Autor: Arvin
 Date: 2021-01-24 20:15:26
 LastEditors: Arvin
-LastEditTime: 2021-01-24 20:24:55
+LastEditTime: 2021-01-24 20:34:26
 '''
 import serial
 import time
@@ -20,11 +20,11 @@ try:
     wstr = '王'
     wbyte = wstr.encode('utf-8')
     print(wbyte)
-    result = ser.write(wbyte)
+    result = ser.write("Hello".encode('utf-8'))
 
     time.sleep(1)
     if ser.in_waiting:
-        rbyte = ser.read(ser.in_waiting)
+        rbyte = ser.read(20)
         print("接收的字节为：", rbyte)
         rstr = rbyte.decode('utf-8')
         print("接收的字符串为：", rstr)

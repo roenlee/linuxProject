@@ -4,7 +4,7 @@
  * @Autor: Arvin
  * @Date: 2021-01-21 20:54:03
  * @LastEditors: Arvin
- * @LastEditTime: 2021-01-21 21:46:58
+ * @LastEditTime: 2021-01-24 20:40:26
 -->
 # linuxProject
 # mainly focus on pyserial module
@@ -14,3 +14,4 @@
 # refer to -> https://www.cnblogs.com/dongxiaodong/p/9992083.html
 # refer to -> https://www.cnblogs.com/deeplearning1314/p/10818529.html
 # refer to -> https://www.cnblogs.com/yay1688/p/10219834.html
+# refer to -> https://www.cnblogs.com/rainbow-tan/p/12858379.html
